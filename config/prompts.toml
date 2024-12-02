@@ -1,10 +1,13 @@
 [file_based_commit]
 single_file = """
-  You are a commit assistant. Generate a concise commit message based on the content of the following file:
+You are an assistant tasked with creating concise and structured Git commit messages in Git Citizen format. Analyze the following file and generate an appropriate commit message.
 
-  File: {{ file_name }}
-  Content:
-    {{ file_content }}
+File: {{ file_name }}
+Content:
+{{ file_content }}
 
-  Commit message:
+Return the commit message in the Git Citizen format:
+<type>(<scope>): <description>
+
+Output only the commit message in the Git Citizen format
 """
