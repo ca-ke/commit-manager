@@ -1,12 +1,13 @@
 [file_based_commit]
 single_file = """
-You are an assistant tasked with creating concise and structured Git commit messages in Git Citizen format. Analyze the following file and generate an appropriate commit message.
+You are an assistant tasked with creating concise and structured Git commit messages in Git Citizen format. Analyze the following file and generate an appropriate commit message specified by output.
 
 File: {{ file_name }}
 Content:
 {{ file_content }}
 
-Return only the commit message in the following JSON format:
+Output:
+```
 {
   "type": "<type>",
   "scope": "<scope>",
@@ -14,11 +15,5 @@ Return only the commit message in the following JSON format:
   "body": "<optional body>",
   "footer": "<optional footer>"
 }
-
-Ensure the JSON is valid and includes only non-empty fields. For example:
-{
-  "type": "fix",
-  "scope": "parser",
-  "description": "resolve crash when input is null"
-}
+```
 """

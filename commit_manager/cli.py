@@ -1,5 +1,7 @@
 import argparse
 import ollama
+import re
+import json
 from pathlib import Path
 from commit_manager.commit_manager import CommitManager
 from commit_manager.prompt_manager import PromptManager
@@ -45,7 +47,14 @@ def cli():
         print(manager.get_current_branch())
     elif args.command == "generate_commit_message":
         commit_message = manager.generate_commit_message()
-        manager.commit_changes(commit_message)
+        json_match = re.search(r"{.*}", commit_message, re.DOTALL)
+        if not json_match:
+            raise ValueError("No JSON found in the response")
+
+        json_text = json.loads(json_match.group(0))
+        manager.commit_changes(
+            f"{json_text['type']}({json_text['scope']}): {json_text['description']}"
+        )
     elif args.command == "history":
         history = manager.get_commit_history(limit=args.limit)
         for commit in history:
