@@ -66,7 +66,7 @@ class CommitManager:
             messages=[{"role": "system", "content": prompt}],
         )
 
-        return response
+        return response["text"]
 
     def get_current_branch(self) -> str:
         """
@@ -97,8 +97,19 @@ class CommitManager:
         Retrieve staged files and their content
         """
         staged_files = [item.a_path for item in self.repo.index.diff("HEAD")]
-        return {
-            file: open(file, "r").read()
-            for file in staged_files
-            if os.path.exists(file)
-        }
+        staged_files_content = {}
+
+        for file in staged_files:
+            try:
+                with open(file, "r", encoding="utf-8") as f:
+                    staged_files_content[file] = f.read()
+            except UnicodeDecodeError:
+                try:
+                    with open(file, "r", encoding="iso-8859-1") as f:
+                        staged_files_content[file] = f.read()
+                except Exception as e:
+                    print(f"Warning: Could not read file '{file}'. The issue {e}")
+                    staged_files_content[file] = (
+                        "[Unreadable file due to enconding issues]"
+                    )
+        return staged_files_content
