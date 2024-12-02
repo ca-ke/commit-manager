@@ -1,0 +1,10 @@
+[file_based_commit]
+single_file = """
+  You are a commit assistant. Generate a concise commit message based on the content of the following file:
+
+  File: {{ file_name }}
+  Content:
+    {{ file_content }}
+
+  Commit message:
+"""

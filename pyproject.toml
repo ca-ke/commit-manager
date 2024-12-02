@@ -12,6 +12,7 @@ commit-manager = "commit_manager.cli:cli"
 python = "^3.12"
 ollama = "^0.4.2"
 gitpython = "^3.1.43"
+tomli = "^2.2.1"
 
 
 [build-system]
