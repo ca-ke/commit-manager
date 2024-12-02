@@ -63,10 +63,9 @@ class CommitManager:
 
         response = self.ollama_client.chat(
             model="llama3.2",
-            messages=[{"role": "system", "content": prompt}],
+            messages=[{"role": "user", "content": prompt}],
         )
-
-        return response["text"]
+        return response["message"]["content"]
 
     def get_current_branch(self) -> str:
         """

@@ -1,6 +1,5 @@
 import argparse
 import ollama
-
 from pathlib import Path
 from commit_manager.commit_manager import CommitManager
 from commit_manager.prompt_manager import PromptManager
@@ -45,7 +44,8 @@ def cli():
     elif args.command == "current":
         print(manager.get_current_branch())
     elif args.command == "generate_commit_message":
-        print(manager.generate_commit_message())
+        commit_message = manager.generate_commit_message()
+        manager.commit_changes(commit_message)
     elif args.command == "history":
         history = manager.get_commit_history(limit=args.limit)
         for commit in history:
