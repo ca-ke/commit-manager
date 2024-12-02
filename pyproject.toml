@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "commit-manager"
+version = "0.1.0"
+description = ""
+authors = ["ca-ke <minhare.caique@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.scripts]
+commit-manager = "commit_manager.cli:cli"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+ollama = "^0.4.2"
+gitpython = "^3.1.43"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
