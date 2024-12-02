@@ -6,6 +6,19 @@ File: {{ file_name }}
 Content:
 {{ file_content }}
 
-Output only the commit message in the Git Citizen format:
-<type>(<scope>): <description>
+Return only the commit message in the following JSON format:
+{
+  "type": "<type>",
+  "scope": "<scope>",
+  "description": "<description>",
+  "body": "<optional body>",
+  "footer": "<optional footer>"
+}
+
+Ensure the JSON is valid and includes only non-empty fields. For example:
+{
+  "type": "fix",
+  "scope": "parser",
+  "description": "resolve crash when input is null"
+}
 """
