@@ -6,8 +6,6 @@ File: {{ file_name }}
 Content:
 {{ file_content }}
 
-Return the commit message in the Git Citizen format:
+Output only the commit message in the Git Citizen format:
 <type>(<scope>): <description>
-
-Output only the commit message in the Git Citizen format
 """
