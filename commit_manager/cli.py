@@ -47,14 +47,11 @@ def cli():
         print(manager.get_current_branch())
     elif args.command == "generate_commit_message":
         commit_message = manager.generate_commit_message()
-        json_match = re.search(r"{.*}", commit_message, re.DOTALL)
-        if not json_match:
-            raise ValueError("No JSON found in the response")
+        match = re.search(r"```(.*?)```", commit_message, re.DOTALL)
+        if not match:
+            raise ValueError(f"No commit message found in the {commit_message}.")
 
-        json_text = json.loads(json_match.group(0))
-        manager.commit_changes(
-            f"{json_text['type']}({json_text['scope']}): {json_text['description']}"
-        )
+        manager.commit_changes(match.group(1).strip())
     elif args.command == "history":
         history = manager.get_commit_history(limit=args.limit)
         for commit in history:
