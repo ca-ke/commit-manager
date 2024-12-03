@@ -6,8 +6,18 @@ File: {{ file_name }}
 Content:
 {{ file_content }}
 
-Output:
+Guidelines:
+1. Limit your commit message to 10 words.
+2. The whole commit message should in lowercase, no uppercase characters are allowed.
+
+Example formats:
+- fix(parser): resolve crash when input is null
+- feat(ui): add dark mode toggle
+- chore(deps): update dependencies to latest versions
+
+Return the commit message delimited by triple backticks following:
 ```
-Commit message: <type>(<scope>): <description>
+<type>(<scope>): <description>
 ```
+
 """
