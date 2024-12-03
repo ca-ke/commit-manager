@@ -8,12 +8,6 @@ Content:
 
 Output:
 ```
-{
-  "type": "<type>",
-  "scope": "<scope>",
-  "description": "<description>",
-  "body": "<optional body>",
-  "footer": "<optional footer>"
-}
+Commit message: <type>(<scope>): <description>
 ```
 """
